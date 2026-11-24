@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream Agency</title>
+
+    <!-- Font dari Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Mulish:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- File CSS external -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- [A] HEADER & MENU -->
+    <header class="navbar">
+        <div class="container navbar-isi">
+            <a href="#" class="logo">Dream Agency</a>
+
+            <input type="checkbox" id="toggle-menu">
+            <label for="toggle-menu" class="hamburger" aria-label="Buka menu">&#9776;</label>
+
+            <nav class="menu">
+                <ul class="menu-link">
+                    <li><a href="#" class="aktif">Beranda</a></li>
+                    <li><a href="#tentang">Tentang Kami</a></li>
+                    <li><a href="#layanan">Layanan</a></li>
+                    <li><a href="#kontak">Kontak Kami</a></li>
+                </ul>
+                <div class="sosial">
+                    <a href="#" aria-label="Facebook"><svg width="10" height="20" viewBox="0 0 10 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_8_35)">
+<path d="M6.82129 20V11H9.55368L10 7H6.82129V5.05176C6.82129 4.02176 6.8476 3 8.2869 3H9.74469V0.140137C9.74469 0.0971367 8.49249 0 7.22568 0C4.57999 0 2.9234 1.6572 2.9234 4.7002V7H0V11H2.9234V20H6.82129Z" fill-rule="evenodd" clip-rule="evenodd" fill="#331B3B"/>
+</g>
+<defs>
+<clipPath id="clip0_8_35">
+<rect width="10" height="20" fill="white"/>
+</clipPath>
+</defs>
+</svg></a>
+                    <a href="#" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_8_42)">
+<path d="M18 18H14.3016V11.7007C14.3016 9.97365 13.6453 9.00849 12.2783 9.00849C10.7912 9.00849 10.0143 10.0129 10.0143 11.7007V18H6.45V6H10.0143V7.6164C10.0143 7.6164 11.0859 5.63338 13.6324 5.63338C16.1777 5.63338 18 7.1877 18 10.4023V18ZM2.19785 4.42869C0.983784 4.42869 0 3.43719 0 2.21435C0 0.991507 0.983784 0 2.19785 0C3.41191 0 4.39511 0.991507 4.39511 2.21435C4.39511 3.43719 3.41191 4.42869 2.19785 4.42869ZM0.357425 18H4.07403V6H0.357425V18Z" fill-rule="evenodd" clip-rule="evenodd" fill="#331B3B"/></g><defs><clipPath id="clip0_8_42"><rect width="18" height="18" fill="white"/></clipPath></defs></svg></a>
+                    <a href="#" aria-label="Instagram"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_8_46)"><path d="M12 2.3202C15.1546 2.3202 15.525 2.33427 16.7718 2.39052C17.9249 2.44208 18.5484 2.63427 18.9656 2.79833C19.5187 3.01395 19.9125 3.26708 20.325 3.67958C20.7375 4.09208 20.9953 4.48583 21.2062 5.03895C21.3656 5.45614 21.5625 6.07958 21.614 7.2327C21.6703 8.47958 21.6843 8.84989 21.6843 12.0046C21.6843 15.1593 21.6703 15.5296 21.614 16.7765C21.5625 17.9296 21.3703 18.553 21.2062 18.9702C20.9906 19.5233 20.7375 19.9171 20.325 20.3296C19.9125 20.7421 19.5187 20.9999 18.9656 21.2108C18.5484 21.3702 17.9249 21.5671 16.7718 21.6186C15.525 21.6749 15.1546 21.689 12 21.689C8.84526 21.689 8.47495 21.6749 7.22808 21.6186C6.07495 21.5671 5.45151 21.3749 5.03433 21.2108C4.4812 20.9952 4.08745 20.7421 3.67495 20.3296C3.26245 19.9171 3.00464 19.5233 2.7937 18.9702C2.63433 18.553 2.43745 17.9296 2.38589 16.7765C2.32964 15.5296 2.31558 15.1593 2.31558 12.0046C2.31558 8.84989 2.32964 8.47958 2.38589 7.2327C2.43745 6.07958 2.62964 5.45614 2.7937 5.03895C3.00933 4.48583 3.26245 4.09208 3.67495 3.67958C4.08745 3.26708 4.4812 3.00927 5.03433 2.79833C5.45151 2.63895 6.07495 2.44208 7.22808 2.39052C8.47495 2.32958 8.84526 2.3202 12 2.3202ZM12 0.192078C8.7937 0.192078 8.39058 0.20614 7.12964 0.26239C5.87339 0.31864 5.01558 0.520203 4.26558 0.810828C3.48745 1.11083 2.8312 1.51864 2.17495 2.17489C1.5187 2.83114 1.11558 3.49208 0.810889 4.26552C0.520264 5.01552 0.318701 5.87333 0.262451 7.13426C0.206201 8.39051 0.192139 8.79364 0.192139 11.9999C0.192139 15.2061 0.206201 15.6093 0.262451 16.8702C0.318701 18.1265 0.520264 18.9843 0.810889 19.739C1.11089 20.5171 1.5187 21.1733 2.17495 21.8296C2.8312 22.4858 3.49214 22.889 4.26558 23.1936C5.01558 23.4843 5.87339 23.6858 7.13433 23.7421C8.39526 23.7983 8.7937 23.8124 12.0046 23.8124C15.2156 23.8124 15.614 23.7983 16.875 23.7421C18.1312 23.6858 18.989 23.4843 19.7437 23.1936C20.5218 22.8936 21.1781 22.4858 21.8343 21.8296C22.4906 21.1733 22.8937 20.5124 23.1984 19.739C23.489 18.989 23.6906 18.1311 23.7468 16.8702C23.8031 15.6093 23.8171 15.2108 23.8171 11.9999C23.8171 8.78895 23.8031 8.39052 23.7468 7.12958C23.6906 5.87333 23.489 5.01552 23.1984 4.26083C22.8984 3.4827 22.4906 2.82645 21.8343 2.1702C21.1781 1.51395 20.5171 1.11083 19.7437 0.80614C18.9937 0.515515 18.1359 0.313953 16.875 0.257703C15.6093 0.20614 15.2062 0.192078 12 0.192078Z" fill="#331B3B"/><path d="M12 5.93427C8.65308 5.93427 5.93433 8.64833 5.93433 11.9999C5.93433 15.3515 8.65308 18.0655 12 18.0655C15.3468 18.0655 18.0656 15.3468 18.0656 11.9999C18.0656 8.65301 15.3468 5.93427 12 5.93427ZM12 15.9374C9.82495 15.9374 8.06245 14.1749 8.06245 11.9999C8.06245 9.82489 9.82495 8.06239 12 8.06239C14.175 8.06239 15.9375 9.82489 15.9375 11.9999C15.9375 14.1749 14.175 15.9374 12 15.9374Z" fill="#331B3B"/><path d="M18.3047 7.11085C19.0865 7.11085 19.7203 6.47706 19.7203 5.69523C19.7203 4.9134 19.0865 4.2796 18.3047 4.2796C17.5228 4.2796 16.889 4.9134 16.889 5.69523C16.889 6.47706 17.5228 7.11085 18.3047 7.11085Z" fill="#331B3B"/></g><defs><clipPath id="clip0_8_46"><rect width="24" height="24" fill="white"/></clipPath></defs></svg></a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section class="hero">
+            <div class="container hero-isi">
+                <div class="hero-teks">
+                    <h1>
+                        <strong>Kami Bantu</strong>
+                        <span>bisnismu tumbuh</span>
+                        <span class="sorot">makin besar</span>
+                    </h1>
+                    <p>Dari ide yang masih setengah matang sampai jadi usaha yang ramai dikunjungi, kami temani tiap langkahnya, mulai dari strategi sampai tampilan digital yang bikin orang betah.</p>
+                    <a href="#layanan" class="tombol">Mulai Sekarang</a>
+                </div>
+                <div class="hero-gambar foto-blob foto-hero">
+                    <img src="img/gambar1.png">
+                    <img src="img/Vector 3.png" alt="">
+                    <img src="img/foto1.png" alt="Dua rekan kerja berdiskusi di depan laptop">
+                    <span class="garis" aria-hidden="true"></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- LAYANAN -->
+        <section id="layanan" class="layanan">
+            <div class="container">
+                <h2 class="judul-bagian judul-tengah"><strong>Layanan Kami</strong> <span>Untuk <span class="sorot">Bisnismu</span></span></h2>
+            </div>
+
+            <div class="container">
+                <div class="layanan-list">
+                    <article class="kartu">
+                        <div class="kartu-ikon"><img src="img/web.png" alt=""></div>
+                        <h3>Desain Website</h3>
+                        <p>Tampilan rapi, enak dipandang, dan terasa seperti brand-mu sejak detik pertama dibuka.</p>
+                    </article>
+                    <article class="kartu">
+                        <div class="kartu-ikon"><img src="img/PengembanganWeb.png" alt=""></div>
+                        <h3>Pengembangan Website</h3>
+                        <p>Situs yang cepat, aman, dan mudah dikelola, dibangun dengan teknologi yang benar-benar sesuai kebutuhan.</p>
+                    </article>
+                    <article class="kartu">
+                        <div class="kartu-ikon"><img src="img/AplikasiMobile.png" alt=""></div>
+                        <h3>Aplikasi Mobile</h3>
+                        <p>Aplikasi Android dan iOS yang berjalan lancar dan terasa nyaman dalam genggaman.</p>
+                    </article>
+                    <article class="kartu">
+                        <div class="kartu-ikon"><img src="img/PemasaranDigital.png" alt=""></div>
+                        <h3>Pemasaran Digital</h3>
+                        <p>Promosi tepat sasaran yang sampai ke orang-orang yang memang mencari produkmu, bukan sekadar ramai sesaat.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- TENTANG KAMI -->
+        <section id="tentang" class="bagian">
+            <div class="container dua-kolom">
+                <div class="foto-blob foto-tim">
+                    <img src="img/gambar2.png">
+                    <img src="img/Vector 9.png" alt="">
+                    <img src="img/foto2.png" alt="Tim Dream Agency sedang berdiskusi">
+                    <span class="garis" aria-hidden="true"></span>
+                </div>
+                <div class="teks">
+                    <h2 class="judul-bagian"><strong>Tentang Kami</strong> <span>Apa <span class="sorot">Adanya</span></span></h2>
+                    <p>Kami adalah tim kecil dengan semangat besar. Berawal dari obrolan santai soal desain, sekarang kami dipercaya banyak pelaku usaha untuk menghidupkan brand mereka di dunia digital.</p>
+                    <p>Bagi kami, pekerjaan bagus lahir dari kerja sama yang jujur. Kamu bercerita, kami dengarkan, dan bersama-sama kita wujudkan.</p>
+                    <a href="#" class="tombol">Lihat Selengkapnya</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- KARYA TERBARU -->
+        <section class="karya">
+            <div class="container">
+                <div class="karya-kepala">
+                    <h2 class="judul-bagian"><strong>Karya Terbaru</strong> <span>Para <span class="sorot">Ahli</span> Kami</span></h2>
+                    <p>Sebagian hasil kerja yang paling kami banggakan. Setiap proyek punya kisahnya sendiri, dan semuanya dikerjakan dengan sepenuh hati.</p>
+                </div>
+
+                <div class="karya-baris">
+                    <article class="kartu-karya">
+                        <img src="img/karya-ui-soup.png" alt="Tampilan situs UI Soup">
+                        <img src="img/karya-ui-soup2.png" alt="">
+                        <div class="karya-info">
+                            <h3>UI Soup</h3>
+                            <a href="#" class="tombol-kecil">Lihat Karya</a>
+                        </div>
+                    </article>
+
+                    <article class="kartu-karya">
+                        <img src="img/karya-goldcrown.png" alt="Tampilan situs Goldcrown Labs">
+                        <img src="img/karya-goldcrown2.png" alt="">
+                        <div class="karya-info">
+                            <h3>Goldcrown Labs</h3>
+                            <a href="#" class="tombol-kecil">Lihat Karya</a>
+                        </div>
+                    </article>
+
+                    <article class="kartu-karya">
+                        <img src="img/karya-close-concierge.png" alt="Tampilan situs Close Concierge">
+                        <img src="img/karya-close-concierge2.png" alt="">
+                        <div class="karya-info">
+                            <h3>Close Concierge</h3>
+                            <a href="#" class="tombol-kecil">Lihat Karya</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONI -->
+        <section class="bagian">
+            <div class="container">
+                <h2 class="judul-bagian judul-tengah"><strong>Testimoni</strong> <span>Kata <span class="sorot">Klien</span> Kami</span></h2>
+                <div class="testimoni-list">
+                    <figure class="testimoni">
+                        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M44.4128 51.5905L54.4 30.5185V12.4097H33.9856V31.6161H41.7776L33.9856 51.5905H44.4128ZM37.0336 28.5681V15.4593H51.3504V29.8321L42.4816 48.5409H38.4464L46.2352 28.5697H37.0336V28.5681Z" fill="#FDC221"/>
+<path d="M20.0272 51.5905L30.0144 30.5185V12.4097H9.59998V31.6161H17.3936L9.59998 51.5905H20.0272ZM12.648 28.5681V15.4593H26.9648V29.8321L18.0976 48.5409H14.0624L21.8512 28.5697H12.648V28.5681Z" fill="#FDC221"/>
+</svg>
+                        <blockquote>Bekerja sama dengan tim ini sangat menyenangkan. Hasilnya melebihi harapan kami, dan prosesnya pun tidak bikin pusing.</blockquote>
+                        <figcaption>UI Soup</figcaption>
+                    </figure>
+                    <figure class="testimoni">
+                        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M44.4128 51.5905L54.4 30.5185V12.4097H33.9856V31.6161H41.7776L33.9856 51.5905H44.4128ZM37.0336 28.5681V15.4593H51.3504V29.8321L42.4816 48.5409H38.4464L46.2352 28.5697H37.0336V28.5681Z" fill="#FDC221"/>
+<path d="M20.0272 51.5905L30.0144 30.5185V12.4097H9.59998V31.6161H17.3936L9.59998 51.5905H20.0272ZM12.648 28.5681V15.4593H26.9648V29.8321L18.0976 48.5409H14.0624L21.8512 28.5697H12.648V28.5681Z" fill="#FDC221"/>
+</svg>
+                        <blockquote>Mereka memahami kebutuhan kami bahkan sebelum penjelasan selesai. Revisi cepat, hasil rapi, dan komunikasinya hangat.</blockquote>
+                        <figcaption>Goldcrown Labs</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer id="kontak" class="footer">
+        <div class="container footer-isi">
+            <div class="footer-brand">
+                <a href="#" class="logo">Dream Agency</a>
+                <p>Kami membantu bisnis tampil percaya diri di ranah digital, dengan desain yang jujur dan hasil yang bisa dirasakan.</p>
+                <h4>Hubungi Kami</h4>
+                <form class="langganan">
+                    <input type="email" placeholder="Masukkan emailmu" aria-label="Email">
+                    <button type="button">Kirim</button>                    
+                </form>
+            </div>
+            <img class="peta" src="img/peta.png" alt="Peta lokasi Dream Agency di Texas, Amerika Serikat">
+        </div>
+    </footer>
+</body>
+</html>

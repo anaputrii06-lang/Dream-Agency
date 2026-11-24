@@ -1,0 +1,745 @@
+/* ==================================================================
+   Dream Agency: Landing page agensi digital
+   Proyek latihan CSS Dasar dan CSS Layout (mengikuti panduan SehatNusa)
+
+   Cara membaca file ini:
+   - File disusun per BAGIAN halaman: [0], [1], [A], [B], ... [G]
+   - Setiap bagian ditulis "mobile first": gaya untuk ponsel dulu,
+     lalu @media (min-width: ...) untuk layar yang lebih lebar.
+   - Breakpoint: 768px (tablet) dan 1024px (desktop).
+
+   Palet warna:
+   Ungu tua #331b3b   Kuning #fdc221      Krem #fff3d4
+   Biru muda #eaf5fd  Merah muda #fff1ee  Teks isi #4a3a52
+   ================================================================== */
+
+/* ==== [0] RESET ==== */
+/* Reset ditaruh di @layer agar mudah dikalahkan oleh aturan di bawahnya.
+   Aturan di luar layer selalu lebih kuat daripada aturan di dalam layer. */
+@layer reset {
+  *, *::before, *::after {
+    box-sizing: border-box;   /* width sudah termasuk padding + border */
+  }
+  body, h1, h2, h3, h4, p, ul, figure, blockquote {
+    margin: 0;                /* hapus margin bawaan browser */
+  }
+  ul {
+    padding: 0;
+    list-style: none;         /* hapus bullet bawaan */
+  }
+  img {
+    max-width: 100%;          /* gambar tidak boleh lebih lebar dari induknya */
+    display: block;           /* hapus celah kecil di bawah gambar */
+  }
+  a {
+    color: inherit;           /* warna link mengikuti induk */
+    text-decoration: none;    /* hapus garis bawah link */
+  }
+  input, select, button {
+    font: inherit;            /* form memakai font halaman */
+    color: inherit;
+  }
+}
+
+/* ==== [1] DASAR ==== */
+html {
+  scroll-behavior: smooth;    /* scroll halus saat klik link #id */
+  scroll-padding-top: 72px;   /* judul tidak tertutup header */
+}
+
+body {
+  font-family: "Mulish", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #4a3a52;
+  background: #ffffff;
+}
+
+h1, h2, h3, h4 {
+  color: #331b3b;
+  line-height: 1.15;
+  font-weight: 800;
+}
+
+/* Pembungkus konten: lebar maksimal 1200px dan selalu di tengah */
+.container {
+  width: 100%;
+  max-width: 1232px;          /* 1200px konten + 2 x 16px padding */
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.bagian { padding: 64px 0; }  /* jarak atas-bawah setiap bagian */
+
+/* Judul bagian: baris pertama (strong) tebal, baris kedua (span) tipis */
+.judul-bagian { font-size: 32px; }
+.judul-bagian strong,
+.judul-bagian > span {
+  display: block;
+}
+.judul-bagian strong { font-weight: 800; }
+.judul-bagian > span { font-weight: 300; }
+.judul-tengah { text-align: center; }
+
+/* Kata bergaris kuning di bawahnya */
+.sorot {
+  position: relative;
+  display: inline-block;
+  isolation: isolate;         /* garis ::after tetap di belakang huruf */
+  white-space: nowrap;
+}
+.sorot::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  right: 0;
+  bottom: 0.02em;
+  height: 0.1em;
+  min-height: 4px;
+  background: #fdc221;
+}
+
+/* Tombol persegi berujung bulat kecil */
+.tombol {
+  display: inline-block;
+  padding: 19px 34px;
+  border-radius: 8px;
+  background: #331b3b;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+.tombol:hover { background: #4d2b59; }
+
+.tombol-kecil {
+  display: inline-block;
+  padding: 2px 14px;
+  border: 1px solid #331b3b;
+  border-radius: 999px;
+  color: #331b3b;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.6;
+}
+.tombol-kecil:hover {
+  background: #331b3b;
+  color: #ffffff;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+.hamburger:focus-visible {
+  outline: 3px solid #fdc221;
+  outline-offset: 3px;
+}
+
+/* Foto dalam bentuk blob + hiasan lingkaran titik dan bentuk kuning.
+   Urutan gambar di HTML: [1] titik-titik, [2] bentuk kuning, [3] foto. */
+.foto-blob {
+  position: relative;         /* patokan untuk gambar hiasan (absolute) */
+  isolation: isolate;         /* z-index hiasan tidak bocor keluar */
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+}
+.foto-blob img {
+  position: absolute;         /* hiasan keluar dari alur normal */
+  max-width: none;
+}
+.foto-blob img:nth-of-type(1) { z-index: 0; }   /* lingkaran titik */
+.foto-blob img:nth-of-type(2) { z-index: 1; }   /* bentuk kuning */
+.foto-blob img:nth-of-type(3) {                 /* foto tetap di alur normal */
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 100%;
+}
+.garis { display: none; }     /* hiasan ini tidak dipakai di desain */
+
+@media (min-width: 768px) {
+  .judul-bagian { font-size: 40px; }
+}
+@media (min-width: 1024px) {
+  .bagian { padding: 96px 0; }
+  .judul-bagian { font-size: 48px; }
+}
+
+/* ==== [A] HEADER & MENU ==== */
+.navbar {
+  position: sticky;           /* menempel di atas saat di-scroll */
+  top: 0;
+  z-index: 100;               /* selalu di depan elemen lain */
+  background: #ffffff;
+}
+
+.navbar-isi {
+  display: flex;
+  flex-wrap: wrap;            /* menu ponsel boleh turun ke baris baru */
+  justify-content: space-between; /* logo di kiri, ☰ di kanan */
+  align-items: center;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.logo {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #331b3b;
+}
+
+/* Checkbox disembunyikan; yang diklik pengguna adalah label ☰ */
+#toggle-menu { display: none; }
+
+.hamburger {
+  font-size: 30px;
+  line-height: 1;
+  color: #331b3b;
+  cursor: pointer;
+}
+
+.menu {
+  display: none;              /* di ponsel menu tersembunyi */
+  width: 100%;                /* saat muncul, isi satu baris penuh */
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 16px;
+  padding-bottom: 8px;
+}
+#toggle-menu:checked ~ .menu { /* checkbox dicentang -> menu tampil */
+  display: flex;
+}
+
+.menu-link {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.menu-link a {
+  position: relative;         /* patokan untuk garis ::after */
+  display: inline-block;
+  width: fit-content;
+  padding: 6px 0;
+  font-size: 14px;
+  color: #331b3b;
+}
+.menu-link a:hover { color: #8a6200; }
+.menu-link a.aktif { font-weight: 800; }
+.menu-link a.aktif::after {   /* garis kuning di bawah menu aktif */
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: #fdc221;
+}
+
+.sosial {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.sosial a {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1.5px solid #331b3b;
+  border-radius: 50%;
+}
+.sosial a:hover { background: #fdc221; }
+.sosial svg { max-width: 18px; max-height: 18px; }
+
+@media (min-width: 1024px) {
+  /* Header menempel di atas layar saat di-scroll: menu kiri, logo tengah,
+     sosial kanan. Di atas hero ia transparan, lalu berubah putih saat digulir. */
+  html { scroll-padding-top: 84px; }
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #ffffff;      /* cadangan untuk browser tanpa scroll timeline */
+  }
+  .hamburger { display: none; } /* ☰ tidak perlu di desktop */
+  .navbar-isi {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding-top: 28px;
+    padding-bottom: 28px;
+  }
+  .menu,
+  #toggle-menu:checked ~ .menu {
+    display: contents;        /* anak .menu ikut jadi item grid .navbar-isi */
+  }
+  .navbar .logo      { grid-column: 2; grid-row: 1; }
+  .navbar .menu-link { grid-column: 1; grid-row: 1; flex-direction: row; gap: 32px; }
+  .navbar .sosial    { grid-column: 3; grid-row: 1; justify-self: end; }
+}
+
+/* Peningkatan progresif: header transparan di puncak halaman, lalu perlahan
+   putih dan sedikit mengecil setelah di-scroll 80px (Chrome dan Edge terbaru). */
+@supports (animation-timeline: scroll()) {
+  @media (min-width: 1024px) {
+    .navbar {
+      background: transparent;
+      animation: navbar-solid linear both;
+      animation-timeline: scroll();
+      animation-range: 0 80px;
+    }
+    .navbar-isi {
+      animation: navbar-ringkas linear both;
+      animation-timeline: scroll();
+      animation-range: 0 80px;
+    }
+  }
+}
+@keyframes navbar-solid {
+  to {
+    background: #ffffff;
+    box-shadow: 0 2px 16px rgba(51, 27, 59, 0.1);
+  }
+}
+@keyframes navbar-ringkas {
+  to {
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+}
+
+/* ==== [B] HERO ==== */
+.hero {
+  position: relative;
+  overflow: hidden;           /* potong hiasan yang keluar */
+  background: #ffffff;
+}
+.hero-isi {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr; /* ponsel: teks dulu, foto di bawahnya */
+  gap: 56px;
+  align-items: center;
+  padding-top: 48px;
+  padding-bottom: 72px;
+}
+
+.hero h1 {
+  font-size: 44px;
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+.hero h1 strong,
+.hero h1 span {
+  display: block;             /* tiap baris judul berdiri sendiri */
+}
+.hero h1 strong { font-weight: 800; }
+.hero h1 span   { font-weight: 300; }
+.hero h1 .sorot { display: inline-block; }
+
+.hero-teks > p {
+  max-width: 440px;
+  margin-bottom: 32px;
+  color: #331b3b;
+}
+
+/* Foto hero: posisi tiap hiasan diukur langsung dari desain Figma,
+   dinyatakan dalam persen terhadap lebar/tinggi foto. */
+.foto-hero { max-width: 480px; }
+.foto-hero::before {          /* lingkaran krem di belakang foto */
+  content: "";
+  position: absolute;
+  left: 42%;
+  top: -18%;                  /* ponsel dan tablet: lebih rendah agar tidak menimpa teks */
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #fff1ce;
+}
+.foto-hero img:nth-of-type(1) {  /* elips titik-titik */
+  width: 80%;
+  left: -1%;
+  top: 6.7%;
+}
+.foto-hero img:nth-of-type(2) {  /* bentuk kuning: tinggi, di belakang foto */
+  width: 62%;
+  left: 49.5%;
+  top: 49.7%;
+  transform: translate(-50%, -50%);
+}
+
+@media (min-width: 768px) {
+  .hero h1 { font-size: 60px; }
+  .hero h1 span { white-space: nowrap; }  /* satu frasa tetap satu baris */
+}
+@media (min-width: 1024px) {
+  .hero-isi {
+    grid-template-columns: 1fr 1.1fr; /* teks kiri, foto kanan */
+    gap: 40px;
+    padding-top: 160px;
+    padding-bottom: 96px;
+  }
+  .hero h1 { font-size: 68px; }
+  .foto-hero { max-width: none; margin-right: 0; }
+  .foto-hero::before {        /* ukuran asli dari desain Figma */
+    left: 35.5%;
+    top: -65%;
+    width: 119%;
+  }
+}
+
+/* ==== [C] LAYANAN ==== */
+.layanan {
+  position: relative;
+  overflow: hidden;
+  padding: 56px 0 88px;
+  background: #ffffff;
+}
+.layanan::before {            /* latar biru muda dengan sudut kanan atas melengkung */
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  top: 0;
+  bottom: 40px;
+  width: 92%;
+  border-top-right-radius: 120px;
+  background: #eaf5fd;
+}
+.layanan::after {             /* lingkaran putus-putus sebagai hiasan */
+  content: "";
+  position: absolute;
+  z-index: 0;
+  right: -140px;
+  bottom: 0;
+  width: 300px;
+  aspect-ratio: 1;
+  border: 1.5px dashed #b9b9b9;
+  border-radius: 50%;
+}
+.layanan .container { position: relative; z-index: 1; }
+.layanan .judul-bagian { margin-bottom: 40px; }
+
+/* Daftar kartu diam di tempat: grid biasa, tanpa geser */
+.layanan-list {
+  display: grid;
+  grid-template-columns: 1fr; /* ponsel: 1 kolom */
+  gap: 20px;
+}
+
+.kartu {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  padding: 24px 22px;
+  border-radius: 6px;
+  background: #ffffff;
+  box-shadow: 0 4px 20px rgba(51, 27, 59, 0.08);
+}
+.kartu:hover { box-shadow: 0 8px 28px rgba(51, 27, 59, 0.16); }
+
+.kartu-ikon {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;        /* ikon di tengah kotak */
+  border-radius: 8px;
+  margin-bottom: 6px;
+}
+.kartu-ikon img { width: 24px; }
+.kartu:nth-child(1) .kartu-ikon { background: #fde4de; }
+.kartu:nth-child(2) .kartu-ikon { background: #fff0cc; }
+.kartu:nth-child(3) .kartu-ikon { background: #dcf0fb; }
+.kartu:nth-child(4) .kartu-ikon { background: #fde4de; }
+
+.kartu h3 {
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.kartu p { font-size: 14px; }
+
+@media (min-width: 768px) {
+  .layanan-list { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .layanan { padding: 96px 0 150px; }
+  .layanan::before {
+    bottom: 100px;
+    width: 92.5%;
+    border-top-right-radius: 380px;
+  }
+  .layanan::after {
+    right: -200px;
+    bottom: 40px;
+    width: 540px;
+  }
+  .layanan-list { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ==== [D] TENTANG KAMI ==== */
+#tentang { overflow: hidden; }
+
+/* .dua-kolom dan .teks juga bisa dipakai ulang di bagian lain */
+.dua-kolom {
+  display: grid;
+  grid-template-columns: 1fr; /* ponsel: 1 kolom */
+  gap: 40px;
+  align-items: center;
+}
+
+.teks {
+  display: grid;
+  gap: 20px;                  /* jarak antar judul, paragraf, tombol */
+  justify-items: start;       /* tombol tidak melebar penuh */
+}
+.teks .judul-bagian { margin-bottom: 4px; }
+
+/* File foto punya tepi transparan, jadi diperbesar dan digeser dengan
+   margin negatif (persen mengikuti lebar kolom) agar bentuk fotonya
+   pas memenuhi kolom. */
+.foto-tim { max-width: 460px; }
+.foto-tim img:nth-of-type(3) {
+  width: 135%;
+  max-width: none;
+  margin: -41.6% 0 -23.7% -14.9%;
+}
+.foto-tim img:nth-of-type(1) {  /* lingkaran titik-titik */
+  width: 102%;
+  left: -1%;
+  top: -3%;
+}
+.foto-tim img:nth-of-type(2) {  /* bentuk kuning */
+  width: 106%;
+  left: -5%;
+  top: -7%;
+}
+
+@media (min-width: 768px) {
+  .dua-kolom {
+    grid-template-columns: 1fr 1fr; /* 2 kolom sama lebar */
+    gap: 72px;
+  }
+  .foto-tim { max-width: none; }
+}
+
+/* ==== [E] KARYA TERBARU ==== */
+.karya {
+  position: relative;
+  overflow: hidden;
+  padding: 56px 0 72px;
+  background: #ffffff;
+}
+.karya::before {              /* latar merah muda dengan sudut kiri atas melengkung */
+  content: "";
+  position: absolute;
+  z-index: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 90%;
+  border-top-left-radius: 120px;
+  background: #fff1ee;
+}
+.karya .container { position: relative; z-index: 1; }
+
+.karya-kepala {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+.karya-kepala p { max-width: 520px; }
+
+.karya-baris {
+  display: grid;
+  grid-template-columns: 1fr; /* ponsel: 1 kolom */
+  gap: 24px;
+}
+
+/* Kartu karya: layar desktop dan ponsel berdampingan, sejajar di bawah */
+.kartu-karya {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 16px;
+  border-radius: 6px;
+  background: #ffffff;
+  box-shadow: 0 4px 24px rgba(51, 27, 59, 0.08);
+}
+.kartu-karya img {
+  flex: none;
+  height: auto;               /* tinggi mengikuti lebar, rasio gambar terjaga */
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(51, 27, 59, 0.14);
+}
+/* Lebar disesuaikan dengan lebar asli file (294, 97, 190 px) supaya gambar
+   dalam satu kartu selalu sama tinggi, seperti di desain. */
+.kartu-karya img:first-child:nth-last-child(3)  { width: calc((100% - 10px) * 294 / 391); } /* desktop */
+.kartu-karya img:nth-child(2):nth-last-child(2) { width: calc((100% - 10px) * 97 / 391); }  /* ponsel */
+.kartu-karya img:first-child:nth-last-child(2)  { width: calc((100% - 10px) * 190 / 391); } /* satu gambar */
+
+.karya-info {
+  flex-basis: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+  padding: 0 4px;
+}
+.karya-info h3 { font-size: 18px; }
+
+@media (min-width: 768px) {
+  .karya-baris { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .karya { padding: 80px 0 96px; }
+  .karya::before { border-top-left-radius: 200px; }
+  .karya-kepala {
+    grid-template-columns: 1fr 1fr; /* judul kiri, paragraf kanan */
+    align-items: center;
+    gap: 48px;
+  }
+  .karya-baris {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+}
+
+/* ==== [F] TESTIMONI ==== */
+.testimoni-list {
+  display: grid;
+  grid-template-columns: 1fr; /* ponsel: 1 kolom */
+  gap: 24px;
+  max-width: 1000px;
+  margin: 40px auto 0;
+}
+
+.testimoni {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  padding: 28px;
+  border-radius: 6px;
+  background: #ffffff;
+  box-shadow: 0 6px 28px rgba(51, 27, 59, 0.09);
+}
+.testimoni svg {
+  width: 56px;
+  height: 56px;
+  margin: -6px 0 0 -8px;      /* ikon kutip sedikit keluar dari padding */
+}
+.testimoni blockquote { color: #331b3b; }
+.testimoni figcaption {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 800;
+  color: #331b3b;
+}
+.testimoni figcaption::before {
+  content: "";
+  width: 10px;
+  height: 3px;
+  background: #fdc221;
+}
+
+@media (min-width: 768px) {
+  .testimoni-list { grid-template-columns: repeat(2, 1fr); }
+  .testimoni { padding: 32px; }
+}
+
+/* ==== [G] FOOTER ==== */
+.footer {
+  padding: 56px 0 64px;
+  border-top-right-radius: 96px;
+  background: #000000;
+  color: #ffffff;
+  font-size: 14px;
+}
+.footer .logo,
+.footer h4 { color: #ffffff; }
+.footer .logo { font-size: 28px; }
+.footer h4 {
+  margin-top: 10px;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.footer-isi {
+  display: grid;
+  grid-template-columns: 1fr; /* ponsel: 1 kolom */
+  gap: 40px;
+  align-items: center;
+}
+.footer-brand {
+  display: grid;
+  gap: 14px;
+  max-width: 400px;
+}
+
+/* Kolom email dan tombol Kirim berdampingan */
+.langganan {
+  display: flex;
+  max-width: 400px;
+}
+.langganan input {
+  flex: 1;
+  min-width: 0;
+  height: 48px;
+  padding: 0 16px;
+  border: 1px solid #ffffff;
+  border-radius: 0;
+  background: transparent;
+  color: #ffffff;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+.langganan input::placeholder { color: #ffffff; }
+.langganan button {
+  flex: 0 0 96px;
+  height: 48px;
+  border: 0;
+  background: #ffffff;
+  color: #000000;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.langganan button:hover { background: #fdc221; }
+
+.peta {
+  width: 100%;
+  max-width: 484px;           /* ukuran asli, agar tidak buram */
+}
+
+@media (min-width: 768px) {
+  .footer-isi {
+    grid-template-columns: 1fr 1fr; /* brand kiri, peta kanan */
+    gap: 48px;
+  }
+  .peta { width: calc(100% - 32px); margin-left: 32px; }
+}
+@media (min-width: 1024px) {
+  .footer {
+    padding: 72px 0 80px;
+    border-top-right-radius: 220px;
+  }
+}
+
+/* Hormati pengguna yang mematikan animasi */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
